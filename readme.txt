@@ -11,3 +11,10 @@ If you have any questions please leave a message : hello@html.design
 
 Thanks.
 HTML.Design
+
+Equipo 6: Prestamos personales
+Integrantes:
+Ana
+Cinthia
+Iris
+Karina
