@@ -28,16 +28,42 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="login.css">
-	<!--[if lt IE 9]>
-		<script src="js/vendor/html5shiv.min.js"></script>
-		<script src="js/vendor/respond.min.js"></script>
-	<![endif]-->
+    <style>
+        .contenedor {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f4f4f4;
+    align-items: center;
+}
 
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+button {
+    background-color: #577fed;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+        </style>
 </head>
 <body>
 	
 	<div id="wrapper">
+
 		<header class="header site-header colorfulheader">
 			<div class="container">
 				<nav class="navbar navbar-default yamm">
@@ -65,36 +91,41 @@
 			</div><!-- end container -->
 		</header><!-- end header -->
 
-		
-		<div class="cajafuera"> 
-            <div class="formulariocaja"> 
-                <div class="botondeintercambiar"> 
-                    <div id="btnvai"></div> 
-                    <button type="button" class="botoncambiarcaja" onclick="loginvai()" id="vaibtnlogin">Login</button> 
-                    <button type="button" class="botoncambiarcaja" onclick="registrarvai()" id="vaibtnregistrar">Registrar</button> 
-                </div> 
-                <!--Formulario para el login --> 
-                <form id="frmlogin" class="grupo-entradas" method="POST" action="login.php"> 
-                    <b>&#128231; Correo</b> 
-                    <input type="email" class="cajaentradatexto" name="txtcorreo" required>
-                    <b>&#128274; Contraseña</b> 
-                    <input type="password" class="cajaentradatexto" name="txtpassword" required> 
-                    <button type="submit" class="botonenviar" name="btnloginx">Iniciar sesión</button> 
-                    </form> 
-                    <!--Formulario para registrar --> 
-                    <form id="frmregistrar" class="grupo-entradas" method="POST" action="registrar.php"> 
-                        <b>&#128231; Correo</b> 
-                        <input type="email" class="cajaentradatexto" required name="txtcorreo"> 
-                        <b>&#128274; Contraseña</b> 
-                        <input type="password" class="cajaentradatexto" required name="txtpassword"> 
-                        </i>&#128100;<b> Nombre</b> 
-                        <input type="text" class="cajaentradatexto" required name="txtnombre"> 
-                        <div class="checkboxvai"><input type="checkbox"> Acepto los términos y condiciones de uso.</div> 
-                        <button type="submit" class="botonenviar" name="btnregistrarx">Registrar</button> 
-                    </form> 
-                        </div> 
-                        </div> 
-		
+		<section class="section normalhead">
+			<div class="container">
+				<div class="row">	
+					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
+						<h2>Solicitar un prestamo</h2>
+						<p class="lead">Llego el momento de solicitar tu prestamo!</p>
+					</div><!-- end col -->
+				</div><!-- end row -->
+			</div><!-- end container -->
+		</section><!-- end section -->
+
+		<section class="section">
+            <div class="contenedor">
+                <h1>Solicitud de Préstamo Personal</h1>
+                <form action="prestamos.php" method="post">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" required><br>
+        
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" required><br>
+        
+                    <label for="monto">Monto solicitado:</label>
+                    <input type="number" name="monto" required><br>
+        
+                    <label for="plazo">Plazo (en meses):</label>
+                    <input type="number" name="plazo" required><br>
+        
+                    <label for="correo">Correo electrónico:</label>
+                    <input type="email" name="correo" required><br>
+        
+                    <button type="submit">Enviar Solicitud</button>
+                </form>
+            </div>
+		</section><!-- end section -->
+
 		<footer class="footer primary-footer">
             <div class="container">
                 <div class="row">
@@ -158,44 +189,26 @@
 	<script src="js/animate.js"></script>
 	<script src="js/custom.js"></script>
 
-	<script>
-		var x = document.getElementById("frmlogin");
-		var y = document.getElementById("frmregistrar");
-		var z = document.getElementById("btnvai");
-		var textcolor1=document.getElementById("vaibtnlogin");
-		var textcolor2=document.getElementById("vaibtnregistrar");
-		textcolor1.style.color="white";
-		textcolor2.style.color="black";
-	
-			function registrarvai()
-			{
-				
-				x.style.left = "-400px";
-				y.style.left = "50px";
-				z.style.left = "110px";
-				textcolor1.style.color="black";
-				textcolor2.style.color="white";
-		
-			}
-				function loginvai()
-			{
-				
-				x.style.left = "50px";
-				y.style.left = "450px";
-				z.style.left = "0";
-				textcolor1.style.color="white";
-				textcolor2.style.color="black";
-	
-			}
-			
-			function abrirform() {
-	  document.getElementById("formrecuperar").style.display = "block";
-	  
-	}
-	
-	function cancelarform() {
-	  document.getElementById("formrecuperar").style.display = "none";
-	}
-		</script>
+    <script>
+        document.getElementById('loan-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Obtiene los valores ingresados por el usuario
+            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
+            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100;
+            const loanTerm = parseInt(document.getElementById('loan-term').value);
+
+            // Calcula la cuota mensual
+            const monthlyInterestRate = interestRate / 12;
+            const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanTerm));
+            
+            // Calcula el total a pagar
+            const totalPayment = monthlyPayment * loanTerm;
+            
+            // Muestra los resultados
+            document.getElementById('monthly-payment').textContent = `Cuota Mensual: $${monthlyPayment.toFixed(2)}`;
+            document.getElementById('total-payment').textContent = `Total a Pagar: $${totalPayment.toFixed(2)}`;
+        });
+    </script>
 </body>
 </html>

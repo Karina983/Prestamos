@@ -1,0 +1,71 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Constructora</title>
+     <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="cajafuera">
+    <div class="formulariocaja">
+        <br>
+        <center>
+        <h1>Iniciar sesión</h1>
+    <br>
+		<!--Formulario para el login -->
+        <form id="frmlogin" class="grupo-entradas" method="POST" action="login.php">
+		<div class="logovai"><img src="img/logo.png"></div>
+		<b>&#128231; Correo</b>
+        <input type="email" class="cajaentradatexto" name="txtcorreo" required>
+        <b> Username</b>
+        <input type="text" class="cajaentradatexto" name="username" required>
+		<b>&#128274; Contraseña</b>
+        <input type="password" class="cajaentradatexto" name="password" required>
+        <div class="checkboxvai"><a onclick="abrirform()">Recuperar contraseña</a></div>
+        <button type="submit" class="botonenviar" name="btnloginx">Iniciar sesión</button>
+        </form>
+
+        </div>
+    </div>
+</center>
+    <script>
+    var x = document.getElementById("frmlogin");
+    var y = document.getElementById("frmregistrar");
+    var z = document.getElementById("btnvai");
+	var textcolor1=document.getElementById("vaibtnlogin");
+	var textcolor2=document.getElementById("vaibtnregistrar");
+	textcolor1.style.color="white";
+	textcolor2.style.color="black";
+
+        function registrarvai()
+		{
+			
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+			textcolor1.style.color="black";
+			textcolor2.style.color="white";
+	
+        }
+            function loginvai()
+		{
+			
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0";
+			textcolor1.style.color="white";
+			textcolor2.style.color="black";
+
+        }
+		
+		function abrirform() {
+  document.getElementById("formrecuperar").style.display = "block";
+  
+}
+
+function cancelarform() {
+  document.getElementById("formrecuperar").style.display = "none";
+}
+    </script>
+</body>
+</html>
