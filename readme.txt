@@ -1,13 +1,17 @@
-Item name : SEO Time
-Item designer : HTML.Design
-Item published on : http://html.design 
-License : Creative Common 3.0
+<<<<<<< HEAD
+=======
+Equipo 6: Prestamos personales
+Integrantes:
+Ana
+Cinthia
+Iris
+Karina
 
-Thanks for download our template. 
-Its 100% free for personal or commercial usage. 
-Stock photos not included!
+NOMBRE EMPRESA: CIAK
 
-If you have any questions please leave a message : hello@html.design 
+CAMBIOS A README
 
-Thanks.
-HTML.Design
+HOLA :9
+
+NUEVA RAMA
+>>>>>>> e0a11b71fe2047171d23b3f5f9827e9872a51451
