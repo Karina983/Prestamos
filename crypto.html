@@ -60,6 +60,13 @@
         td {
             background-color: #269abc;
         }
+		#resultado {
+            background-color: #269abc;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: auto; /* Añadido para hacer el recuadro más pequeño */
+        }
     </style>
 </head>
 <body>
@@ -81,13 +88,13 @@
 				        <div id="navbar" class="navbar-collapse collapse">
 
 							<ul class="nav navbar-nav navbar-right">
+								<li><div id="resultado"></div></li>
 				                <li><a href="index.html">Inicio</a></li>
 				                <li><a href="page-about.html">Acerca de</a></li>
 				                <li><a href="case-studies.html">Simulador</a></li>
 								<li><a href="page-contact.html">Contacto</a></li>
 				                <li class=""><a href="blog.html">Iniciar Sesión</a></li>
                             </ul>
-				          
 				            
 				        </div><!--/.nav-collapse -->
 				    </div><!--/.container-fluid -->
@@ -136,6 +143,23 @@
                 </script>
             </div>
         </section>
+
+		<script>
+			$(document).ready(function(){
+				$.ajax({
+					url: 'http://api.openweathermap.org/data/2.5/weather',
+					data: {
+						q: 'Ciudad Juárez, Chihuahua',
+						appid: 'a09af914e8ada3498b34896f73636edd',
+						units: 'metric',
+						lang: 'es'
+					},
+					success: function(data) {
+						$('#resultado').html('El clima en Ciudad Juárez hoy es: ' + data.main.temp + '°C');
+					}
+				});
+			});
+		</script>
 
 		<footer class="footer primary-footer">
             <div class="container">
