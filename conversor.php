@@ -28,56 +28,12 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="style.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        h1 {
-            color: #007bff;
-        }
-
-
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-
-        #result {
-            margin: 20px auto;
-            width: 500px;
-            padding: 20px;
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-    </style>
+	<link rel="stylesheet" href="estilo.css">
 
 </head>
 <body>
 	
 	<div id="wrapper">
-
 		<header class="header site-header colorfulheader">
 			<div class="container">
 				<nav class="navbar navbar-default yamm">
@@ -104,47 +60,44 @@
 				</nav><!-- end nav -->
 			</div><!-- end container -->
 		</header><!-- end header -->
+        <h1>Conversor de Pesos a Otras Monedas</h1>
+    <form action="" method="post" style="margin: 10px;">
+        <input type="number" name="cantidad" placeholder="Cantidad a convertir" required step="any"><br><br>
+        <label>A:</label>
+        <select name="moneda_destino">
+            <option value="USD">Dólar estadounidense (USD)</option>
+            <option value="EUR">Euro (EUR)</option>
+            <option value="JPY">Yen japonés (JPY)</option>
+            <option value="GBP">Libra esterlina (GBP)</option>
+            <option value="AUD">Dólar australiano (AUD)</option>
+        </select><br><br>
+        <input type="submit" value="Convertir">
+        <input type="hidden" name="moneda_origen" value="MXN"> <!-- Fija la moneda de origen en MXN -->
+    </form>
+    <?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $cantidad = $_POST["cantidad"];
+    $moneda_origen = $_POST["moneda_origen"];
+    $moneda_destino = $_POST["moneda_destino"];
 
-		<section class="section normalhead">
-			<div class="container">
-				<div class="row">	
-					<div class="col-md-10 col-md-offset-1 col-sm-12 text-center">
-						<h2>Simulador de prestamos</h2>
-						<p class="lead">En esta sección puedes revisar cuanto es lo que pagarías al solicitar un prestamo.</p>
-						<button><a href="conversor.php">Conversor de monedas</a></button>
-					</div><!-- end col -->
-				</div><!-- end row -->
-			</div><!-- end container -->
-		</section><!-- end section -->
+    // Tasas de conversión (ejemplo, tasas ficticias)
+    $tasas = [
+        "USD" => 0.059,    
+        "EUR" => 0.053, 
+        "JPY" => 8.62,  
+        "GBP" => 0.047,  
+        "AUD" => 0.089,  
+        "MXN" => 1.0,    // Tasa ficticia para MXN (1 MXN = 1 MXN)
+        // Agrega más tasas según las monedas que admitas
+    ];
 
-		<section class="section">
-			<div class="container">
-				<form id="loan-form">
-					<label for="loan-amount">Monto del Préstamo:</label>
-					<input type="number" id="loan-amount" min="1" step="1" required>
-					<br>
-					
-					<label for="interest-rate">Tasa de Interés Anual (%):</label>
-					<input type="number" id="interest-rate" min="0" step="0.01" value="29.01" required readonly>
-					<br>
-					
-					<label for="loan-term">Plazo del Préstamo (meses):</label>
-					<input type="number" id="loan-term" min="1" step="1" required>
-					<br>
-					
-					<input type="submit" value="Calcular Cuota Mensual">
-				</form>
-				
-				<div id="result">
-					<h2>Resultado:</h2>
-					<p id="monthly-payment"></p>
-					<p id="total-payment"></p>
-				</div>
-			
+    // Realiza la conversión
+    $resultado = $cantidad * ($tasas[$moneda_destino] / $tasas[$moneda_origen]);
 
-			</div><!-- end container -->
-		</section><!-- end section -->
-
+    echo "<h2>Resultado:</h2>";
+    echo $cantidad . ' ' . $moneda_origen . ' = ' . $resultado . ' ' . $moneda_destino;
+}
+?>
 		<footer class="footer primary-footer">
             <div class="container">
                 <div class="row">
@@ -207,27 +160,5 @@
 	<script src="js/parallax.js"></script>
 	<script src="js/animate.js"></script>
 	<script src="js/custom.js"></script>
-
-    <script>
-        document.getElementById('loan-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Obtiene los valores ingresados por el usuario
-            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
-            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100;
-            const loanTerm = parseInt(document.getElementById('loan-term').value);
-
-            // Calcula la cuota mensual
-            const monthlyInterestRate = interestRate / 12;
-            const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanTerm));
-            
-            // Calcula el total a pagar
-            const totalPayment = monthlyPayment * loanTerm;
-            
-            // Muestra los resultados
-            document.getElementById('monthly-payment').textContent = `Cuota Mensual: $${monthlyPayment.toFixed(2)}`;
-            document.getElementById('total-payment').textContent = `Total a Pagar: $${totalPayment.toFixed(2)}`;
-        });
-    </script>
 </body>
 </html>

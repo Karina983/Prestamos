@@ -28,11 +28,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="login.css">
-	<!--[if lt IE 9]>
-		<script src="js/vendor/html5shiv.min.js"></script>
-		<script src="js/vendor/respond.min.js"></script>
-	<![endif]-->
+	<link rel="stylesheet" href="estilo.css">
 
 </head>
 <body>
@@ -65,7 +61,8 @@
 			</div><!-- end container -->
 		</header><!-- end header -->
 
-		
+	
+                      	
 		<div class="cajafuera"> 
             <div class="formulariocaja"> 
                 <div class="botondeintercambiar"> 
@@ -73,13 +70,24 @@
                     <button type="button" class="botoncambiarcaja" onclick="loginvai()" id="vaibtnlogin">Login</button> 
                     <button type="button" class="botoncambiarcaja" onclick="registrarvai()" id="vaibtnregistrar">Registrar</button> 
                 </div> 
+				
                 <!--Formulario para el login --> 
                 <form id="frmlogin" class="grupo-entradas" method="POST" action="login.php"> 
                     <b>&#128231; Correo</b> 
                     <input type="email" class="cajaentradatexto" name="txtcorreo" required>
                     <b>&#128274; Contraseña</b> 
                     <input type="password" class="cajaentradatexto" name="txtpassword" required> 
-                    <button type="submit" class="botonenviar" name="btnloginx">Iniciar sesión</button> 
+					<div class="checkboxvai"><a onclick="mostrarFormulario()">Recuperar contraseña</a></div>
+                    <button type="submit" class="botonenviar" name="btnloginx">Iniciar sesión</button> <br>
+					<div class="fb-login-button" 
+					data-size="large" 
+					data-button-type="login_with" 
+					data-layout="rounded" 
+					data-auto-logout-link="false" 
+					data-use-continue-as="false" 
+					scope="public_profile,email" 
+					onlogin="checkLoginState();">
+				</div>
                     </form> 
                     <!--Formulario para registrar --> 
                     <form id="frmregistrar" class="grupo-entradas" method="POST" action="registrar.php"> 
@@ -93,8 +101,26 @@
                         <button type="submit" class="botonenviar" name="btnregistrarx">Registrar</button> 
                     </form> 
                         </div> 
-                        </div> 
-		
+						
+						</div>
+						
+						<div class="caja_popup" id="formrecuperar">
+							<form action="recuperar.php" class="contenedor_popup" method="POST">
+								<table>
+									<tr><th colspan="2">Recuperar contraseña</th></tr>
+									<tr> 
+										<td><b>&#128231; Numero</b></td>
+										<td><input type="tel" name="txtcorreo" required class="cajaentradatexto"></td>
+									</tr>
+									<tr> 	
+										<td colspan="2">
+											<button type="button" onclick="ocultarFormulario()" class="txtrecuperar">Cancelar</button>
+											<input class="txtrecuperar" type="submit" name="btnrecuperar" value="Enviar" onClick="javascript: return confirm('¿Deseas enviar tu contraseña a tu numero?');">
+										</td>
+									</tr>
+								</table>
+							</form>
+						</div>
 		<footer class="footer primary-footer">
             <div class="container">
                 <div class="row">
@@ -159,43 +185,43 @@
 	<script src="js/custom.js"></script>
 
 	<script>
-		var x = document.getElementById("frmlogin");
-		var y = document.getElementById("frmregistrar");
-		var z = document.getElementById("btnvai");
-		var textcolor1=document.getElementById("vaibtnlogin");
-		var textcolor2=document.getElementById("vaibtnregistrar");
-		textcolor1.style.color="white";
-		textcolor2.style.color="black";
-	
-			function registrarvai()
-			{
-				
-				x.style.left = "-400px";
-				y.style.left = "50px";
-				z.style.left = "110px";
-				textcolor1.style.color="black";
-				textcolor2.style.color="white";
-		
-			}
-				function loginvai()
-			{
-				
-				x.style.left = "50px";
-				y.style.left = "450px";
-				z.style.left = "0";
-				textcolor1.style.color="white";
-				textcolor2.style.color="black";
-	
-			}
+    var x = document.getElementById("frmlogin");
+    var y = document.getElementById("frmregistrar");
+    var z = document.getElementById("btnvai");
+	var textcolor1=document.getElementById("vaibtnlogin");
+	var textcolor2=document.getElementById("vaibtnregistrar");
+	textcolor1.style.color="white";
+	textcolor2.style.color="black";
+
+        function registrarvai()
+		{
 			
-			function abrirform() {
-	  document.getElementById("formrecuperar").style.display = "block";
-	  
-	}
+            x.style.left = "-400px";
+            y.style.left = "50px";
+            z.style.left = "110px";
+			textcolor1.style.color="black";
+			textcolor2.style.color="white";
 	
-	function cancelarform() {
-	  document.getElementById("formrecuperar").style.display = "none";
-	}
+        }
+            function loginvai()
+		{
+			
+            x.style.left = "50px";
+            y.style.left = "450px";
+            z.style.left = "0";
+			textcolor1.style.color="white";
+			textcolor2.style.color="black";
+
+        }
+		
+        function mostrarFormulario() {
+            document.getElementById("formrecuperar").style.display = "block";
+        }
+
+        function ocultarFormulario() {
+            document.getElementById("formrecuperar").style.display = "none";
+        }
 		</script>
+
 </body>
 </html>
