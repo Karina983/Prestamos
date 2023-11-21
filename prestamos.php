@@ -39,7 +39,7 @@ if (empty($nombre) || empty($apellido) || empty($monto) || empty($plazo) || empt
     $stmt->bind_param("ssdss", $nombre, $apellido, $monto, $plazo, $correo);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Solicitud de préstamo enviada con éxito.'); window.location= 'Prestamo.html' </script>";
+        echo "<script>window.open('telefono.html');</script>";
     } else {
         echo '<script>alert("Error al enviar la solicitud de préstamo: ' . $stmt->error . '");</script>';
     }

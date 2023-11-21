@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="estilo.css">
     <style>
         .contenedor {
     max-width: 500px;
@@ -121,7 +122,7 @@ button {
                     <label for="correo">Correo electrónico:</label>
                     <input type="email" name="correo" required><br>
         
-                    <button type="submit">Enviar Solicitud</button>
+                    <button type="submit"> <a onclick="redireccionar()">Enviar Solicitud</a></button>
                 </form>
             </div>
 		</section><!-- end section -->
@@ -188,27 +189,11 @@ button {
 	<script src="js/parallax.js"></script>
 	<script src="js/animate.js"></script>
 	<script src="js/custom.js"></script>
-
-    <script>
-        document.getElementById('loan-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Obtiene los valores ingresados por el usuario
-            const loanAmount = parseFloat(document.getElementById('loan-amount').value);
-            const interestRate = parseFloat(document.getElementById('interest-rate').value) / 100;
-            const loanTerm = parseInt(document.getElementById('loan-term').value);
-
-            // Calcula la cuota mensual
-            const monthlyInterestRate = interestRate / 12;
-            const monthlyPayment = (loanAmount * monthlyInterestRate) / (1 - Math.pow(1 + monthlyInterestRate, -loanTerm));
-            
-            // Calcula el total a pagar
-            const totalPayment = monthlyPayment * loanTerm;
-            
-            // Muestra los resultados
-            document.getElementById('monthly-payment').textContent = `Cuota Mensual: $${monthlyPayment.toFixed(2)}`;
-            document.getElementById('total-payment').textContent = `Total a Pagar: $${totalPayment.toFixed(2)}`;
-        });
-    </script>
+	<script>
+		// Función para redireccionar a telefono.html
+		function redireccionar() {
+			window.location.href = 'telefono.html';
+		}
+	</script>
 </body>
 </html>
